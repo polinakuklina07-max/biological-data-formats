@@ -51,3 +51,4 @@ class GenomicDataReader(Reader, ABC):
     def validate_coordinate(self, chrom, pos):
         """Проверяет корректность координаты"""
         pass
+    
