@@ -1,6 +1,6 @@
 import os
 from readers.fasta import FastaReader
-from readers.fastq import FastqReader
+from readers.Fastq_project import FastqReader
 from readers.sam import SamReader
 
 def run_fasta_demo():
