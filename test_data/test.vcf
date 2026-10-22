@@ -1,0 +1,7 @@
+
+##fileformat=VCFv4.2
+##reference=GRCh38
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+chr1	1000	rs123	A	G	99	PASS	.
+chr1	1050	rs456	AT	A	80	PASS	.
+chr2	1500	rs789	G	T	95	PASS	.
