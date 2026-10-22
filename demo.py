@@ -86,4 +86,4 @@ if __name__ == "__main__":
     run_fasta_demo()
     run_fastq_demo()
     run_sam_demo()
-
+    run_vcf_demo()
