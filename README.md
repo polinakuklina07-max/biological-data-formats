@@ -6,8 +6,6 @@
 
 ## Документация и релиз
 
-**[Открыть онлайн-документацию Sphinx](https://polinakuklina07-max.github.io/biological-data-formats/)**
-
 **[GitHub Release v1.0.0](https://github.com/polinakuklina07-max/biological-data-formats/releases/tag/v1.0.0)**
 
 **[Скачать HTML-документацию в ZIP](https://github.com/polinakuklina07-max/biological-data-formats/releases/download/v1.0.0/biological-data-formats-docs.zip)**
