@@ -203,34 +203,21 @@ MPLBACKEND=Agg python3 demo.py
 
 ## Документация Sphinx
 
-Документация проекта создаётся автоматически с помощью Sphinx.
+Для проекта создана HTML-документация с помощью Sphinx.
 
-Она содержит описание архитектуры и Python-классов:
+Документация содержит описание архитектуры проекта, базовых классов `Reader`, `SequenceReader`, `GenomicDataReader`, а также парсеров FASTA, FASTQ, SAM и VCF.
 
-- `Reader`
-- `SequenceReader`
-- `GenomicDataReader`
-- `FastaReader`
-- `FastqReader`
-- `SamReader`
-- `VcfReader`
+**[Скачать HTML-документацию проекта (ZIP)](https://github.com/polinakuklina07-max/biological-data-formats/releases/download/v1.0.0/biological-data-formats-docs.zip)**
 
-Для генерации HTML из корня проекта выполните:
+**[Посмотреть релиз v1.0.0](https://github.com/polinakuklina07-max/biological-data-formats/releases/tag/v1.0.0)**
+
+Чтобы открыть документацию, скачайте ZIP-архив, распакуйте его и откройте файл `docs/_build/html/index.html` в браузере.
+
+Документацию также можно самостоятельно сгенерировать из исходных файлов:
 
 ```bash
+python3 -m pip install sphinx
 python3 -m sphinx -E -b html docs docs/_build/html
-```
-
-После успешной сборки откройте:
-
-```text
-docs/_build/html/index.html
-```
-
-На macOS:
-
-```bash
-open docs/_build/html/index.html
 ```
 
 ## Командная разработка
