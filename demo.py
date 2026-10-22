@@ -5,7 +5,7 @@ from readers.sam import SamReader
 from readers.vcf import VcfReader
 
 def run_fasta_demo():
-    fasta_path = os.path.join("A0A6I4IPK0.fasta")
+    fasta_path = os.path.join("test_data", "A0A6I4IPK0.fasta")
 
     if not os.path.exists(fasta_path):
         print(f"Файла не существует")
@@ -24,7 +24,7 @@ def run_fasta_demo():
 
 def run_fastq_demo():
     print("Тестирование FastqReader")
-    fastq_path = os.path.join("test_data", "sample.fastq")
+    fastq_path = os.path.join("test_data", "test.fastq")
     if not os.path.exists(fastq_path):
         print(f"Файла не существует:{fastq_path}")
         return
