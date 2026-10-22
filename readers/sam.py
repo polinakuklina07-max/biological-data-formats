@@ -36,9 +36,12 @@ class SamReader(GenomicDataReader):
                    parts=line.strip().split('\t')
                    if len(parts)<11:
                        continue
-                   yield {'qname': parts[0],
-                          'rname': parts[2],
-                          'pos': int(parts[3])}
+                   yield {
+                        "qname": parts[0],
+                        "rname": parts[2],
+                        "pos": int(parts[3]),
+                        "cigar": parts[5]
+                    }
 
     def get_chromosome_stats(self):
         """Статистика: количество выравниваний на хромосому с помощью Pandas"""
