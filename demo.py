@@ -2,6 +2,7 @@ import os
 from readers.fasta import FastaReader
 from readers.Fastq_project import FastqReader
 from readers.sam import SamReader
+from readers.vcf import VcfReader
 
 def run_fasta_demo():
     fasta_path = os.path.join("A0A6I4IPK0.fasta")
@@ -51,6 +52,35 @@ def run_sam_demo():
     print(reader.get_chromosome_stats())
     print("\nПоиск в регионе chr1:100-160:")
     print(reader.get_region_intersect("chr1", 100, 160))
+
+
+def run_vcf_demo():
+    print("\n========== VCF ==========")
+    vcf_path = os.path.join("test_data", "vcf_practice_extended.vcf")
+    if not os.path.exists(vcf_path):
+        print(f"Файл не найден: {vcf_path}")
+        return
+    try:
+        reader = VcfReader(vcf_path)
+        print("Тестирование VcfReader")
+        print("\nЗаголовки:")
+        print(reader.get_headers())
+        print("\nРеференсный геном:")
+        print(reader.get_refrence_genome())
+        print("\nКоличество вариантов:")
+        print(reader.count_variants())
+        print("\nХромосомы:")
+        print(reader.get_chromosomes())
+        print("\nСтатистика по регионам:")
+        print(reader.get_statistics().to_string(index=False))
+        print("\nПересечения с регионом chr7:350000-350050:")
+        variants = list(reader.get_region_intersect("chr7", 350000, 350050))
+        for variant in variants:
+            print(variant)
+        print("Найдено вариантов:", len(variants))
+    except (OSError, UnicodeError, ValueError) as error:
+        print("Ошибка VCF:", error)
+
 
 if __name__ == "__main__":
     run_fasta_demo()
