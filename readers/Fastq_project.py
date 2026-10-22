@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from typing import Iterator, Dict, List
 
-from .base import SequenceReader
+from base import SequenceReader
 
 class FastqReader(SequenceReader):
     """
