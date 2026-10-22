@@ -1,5 +1,5 @@
 import pandas as pd
-from readers.base import GenomicDataReader
+from base import GenomicDataReader
 class SamReader(GenomicDataReader):
     def __init__(self, filepath):
         super().__init__(filepath)
