@@ -1,5 +1,5 @@
 
-from .base import GenomicDataReader
+from base import GenomicDataReader
 import pandas as pd
 
 class VcfReader(GenomicDataReader):
