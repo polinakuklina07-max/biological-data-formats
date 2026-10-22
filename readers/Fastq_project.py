@@ -87,6 +87,13 @@ class FastqReader(SequenceReader):
         for record in self.read():
             seq = record["sequence"]
             qual = record["quality"]
+            if len(seq) != len(qual):
+                print(
+                    f"Пропускаем некорректную запись {record['header']}: "
+                    f"длина последовательности {len(seq)}, "
+                    f"длина качества {len(qual)}"
+                )
+                continue
             lengths.append(len(seq))
             # Перевод ASCII в Phred score (Phred+33)
             for pos in range(len(seq)):
