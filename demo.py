@@ -1,6 +1,7 @@
 import os
-from fasta import FastaReader
-from fastq import FastqReader
+from readers.fasta import FastaReader
+from readers.fastq import FastqReader
+from readers.sam import SamReader
 
 def run_fasta_demo():
     fasta_path = os.path.join("A0A6I4IPK0.fasta")
@@ -36,7 +37,23 @@ def run_fastq_demo():
     print("Успех! Графики сохранены в файл 'fastq_report.png'\n")
     
 
+def run_sam_demo():
+    print("\n--- Тестирование SamReader ---")
+    sam_path = os.path.join("test_data", "test.sam")
+
+    if not os.path.exists(sam_path):
+        print(f"Файла SAM не существует по пути: {sam_path}")
+        return
+
+    reader = SamReader(sam_path)
+    print(f"Заголовки PG/RG: {reader.parse_headers()}")
+    print("\nСтатистика по хромосомам:")
+    print(reader.get_chromosome_stats())
+    print("\nПоиск в регионе chr1:100-160:")
+    print(reader.get_region_intersect("chr1", 100, 160))
+
 if __name__ == "__main__":
     run_fasta_demo()
     run_fastq_demo()
+    run_sam_demo()
 
