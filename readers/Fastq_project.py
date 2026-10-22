@@ -81,6 +81,7 @@ class FastqReader(SequenceReader):
                                        Если None, график выводится на экран.
         """
         pos_qualities: Dict[int, List[int]] = {}
+        pos_content = {}
         lengths = []
 
         for record in self.read():
