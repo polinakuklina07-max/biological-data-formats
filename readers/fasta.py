@@ -1,33 +1,33 @@
 from base import SequenceReader
+
 class FastaReader(SequenceReader):
     """Класс для чтения и анализа файлов формата FASTA."""
 
     def read(self):
-        self.close()
-        self._file = open(str(self.filename))
+        if self._file is None or self._file.closed:
+            self._file = open(str(self.filename), 'r', encoding='utf-8')
+        self._file.seek(0)
+        
         current_ID = None
         current_seq = []
-
+        
         for line in self._file:
             line = line.strip()
             if line == "":
                 continue
+                
             if line.startswith(">"):
                 if current_ID is not None:
-                    full_sequence = ""
-                    for chunk in current_seq:
-                        full_sequence += chunk
+                    full_sequence = "".join(current_seq)
                     yield {"ID": current_ID, "sequence": full_sequence}
-                    current_ID = line[1:]
-                    current_seq = []
+                current_ID = line[1:]
+                current_seq = []
             else:
                 current_seq.append(line)
+                
         if current_ID is not None:
-            full_sequence = ""
-            for chunk in current_seq:
-                full_sequence += chunk
+            full_sequence = "".join(current_seq)
             yield {"ID": current_ID, "sequence": full_sequence}
-        self.close()
 
     def analyze_line(self, line):
         """Реализация обязательного абстрактного метода"""
@@ -37,7 +37,7 @@ class FastaReader(SequenceReader):
         ID = []
         for part in self.read():
             ID.append(part["ID"])
-        return ID 
+        return ID
 
     def validate_sequence(self, sequence):
         return len(sequence) > 0
@@ -51,11 +51,10 @@ class FastaReader(SequenceReader):
     def get_average_length(self):
         total_length = 0
         count = 0
-        for lenght in self.read():
-            total_length += len(lenght["sequence"])
+        for item in self.read():
+            total_length += len(item["sequence"])
             count += 1
         if count > 0:
             return total_length / count
         else:
             return 0.0
-        
