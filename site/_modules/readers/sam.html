@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html lang="ru" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>readers.sam &#8212; документация Biological Data Formats 1.0.0</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../_static/documentation_options.js?v=e35015f7"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/translations.js?v=9bfe3ffa"></script>
+    <link rel="index" title="Алфавитный указатель" href="../../genindex.html" />
+    <link rel="search" title="Поиск" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Исходный код readers.sam</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">base</span><span class="w"> </span><span class="kn">import</span> <span class="n">GenomicDataReader</span>
+<div class="viewcode-block" id="SamReader">
+<a class="viewcode-back" href="../../api.html#readers.sam.SamReader">[документация]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SamReader</span><span class="p">(</span><span class="n">GenomicDataReader</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+        
+<div class="viewcode-block" id="SamReader.parse_headers">
+<a class="viewcode-back" href="../../api.html#readers.sam.SamReader.parse_headers">[документация]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Собирает информацию из строк, начинающихся с @"""</span>
+        <span class="n">headers</span><span class="o">=</span> <span class="p">{</span><span class="s1">'PG'</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">'RG'</span><span class="p">:</span> <span class="p">[]}</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'@'</span><span class="p">):</span>
+                    <span class="k">break</span>
+
+                <span class="n">parts</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'</span><span class="se">\t</span><span class="s1">'</span><span class="p">)</span>
+                <span class="n">record_type</span><span class="o">=</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span>
+
+                <span class="k">if</span> <span class="n">record_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'PG'</span><span class="p">,</span> <span class="s1">'RG'</span><span class="p">]:</span>
+                    <span class="n">info</span> <span class="o">=</span> <span class="p">{}</span>
+                    <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">parts</span> <span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+                        <span class="k">if</span> <span class="s1">':'</span> <span class="ow">in</span> <span class="n">field</span><span class="p">:</span>
+                            <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">split</span> <span class="p">(</span><span class="s1">':'</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                            <span class="n">info</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">=</span> <span class="n">value</span> 
+                    <span class="n">headers</span><span class="p">[</span><span class="n">record_type</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">headers</span></div>
+
+
+<div class="viewcode-block" id="SamReader.read_alignments">
+<a class="viewcode-back" href="../../api.html#readers.sam.SamReader.read_alignments">[документация]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">read_alignments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">         </span><span class="sd">"""Генератор, который выдает по одному выравниванию"""</span>
+         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+              <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+                   <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'@'</span><span class="p">):</span>
+                       <span class="k">continue</span>
+
+                   <span class="n">parts</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'</span><span class="se">\t</span><span class="s1">'</span><span class="p">)</span>
+                   <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">11</span><span class="p">:</span>
+                       <span class="k">continue</span>
+                   <span class="k">yield</span> <span class="p">{</span><span class="s1">'qname'</span><span class="p">:</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                          <span class="s1">'rname'</span><span class="p">:</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                          <span class="s1">'pos'</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">3</span><span class="p">])}</span></div>
+
+
+<div class="viewcode-block" id="SamReader.get_chromosome_stats">
+<a class="viewcode-back" href="../../api.html#readers.sam.SamReader.get_chromosome_stats">[документация]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_chromosome_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Статистика: количество выравниваний на хромосому с помощью Pandas"""</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">read_alignments</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'rname'</span><span class="p">,</span> <span class="s1">'count'</span><span class="p">])</span>
+
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">stats</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'rname'</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">'count'</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">stats</span></div>
+
+
+<div class="viewcode-block" id="SamReader.get_region_intersect">
+<a class="viewcode-back" href="../../api.html#readers.sam.SamReader.get_region_intersect">[документация]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_region_intersect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chrom</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Поиск пересечений"""</span>
+        <span class="n">hits</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">alignment</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_alignments</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">alignment</span><span class="p">[</span><span class="s1">'rname'</span><span class="p">]</span> <span class="o">==</span> <span class="n">chrom</span> <span class="ow">and</span> <span class="n">start</span> <span class="o">&lt;=</span> <span class="n">alignment</span><span class="p">[</span><span class="s1">'pos'</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">:</span>
+                <span class="n">hits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">alignment</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">hits</span></div>
+
+
+<div class="viewcode-block" id="SamReader.read">
+<a class="viewcode-back" href="../../api.html#readers.sam.SamReader.read">[документация]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_alignments</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="SamReader.analyze_line">
+<a class="viewcode-back" href="../../api.html#readers.sam.SamReader.analyze_line">[документация]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">analyze_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Разбирает одну строку SAM."""</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'</span><span class="se">\t</span><span class="s1">'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">11</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">'qname'</span><span class="p">:</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">'rname'</span><span class="p">:</span> <span class="n">parts</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s1">'pos'</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">3</span><span class="p">])}</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="SamReader.get_chromosomes">
+<a class="viewcode-back" href="../../api.html#readers.sam.SamReader.get_chromosomes">[документация]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_chromosomes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Обязательный метод из GenomicDataReader"""</span>
+        <span class="n">chroms</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">aln</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_alignments</span><span class="p">():</span>
+            <span class="n">chroms</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">aln</span><span class="p">[</span><span class="s1">'rname'</span><span class="p">])</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">chroms</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SamReader.get_refrence_genome">
+<a class="viewcode-back" href="../../api.html#readers.sam.SamReader.get_refrence_genome">[документация]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_refrence_genome</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Возвращает имя референсного генома."""</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'@SQ'</span><span class="p">):</span>
+                    <span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'</span><span class="se">\t</span><span class="s1">'</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">parts</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">field</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'SN:'</span><span class="p">):</span>
+                            <span class="k">return</span> <span class="n">field</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">':'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'@'</span><span class="p">):</span>
+                    <span class="k">break</span>
+        <span class="k">return</span> <span class="s2">"Unknown"</span></div>
+
+
+<div class="viewcode-block" id="SamReader.validate_coordinate">
+<a class="viewcode-back" href="../../api.html#readers.sam.SamReader.validate_coordinate">[документация]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate_coordinate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chrom</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Проверяет корректность."""</span>
+        <span class="n">valid_chroms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_chromosomes</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">chrom</span> <span class="ow">in</span> <span class="n">valid_chroms</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">pos</span> <span class="o">&gt;</span> <span class="mi">0</span></div>
+</div>
+
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Biological Data Formats</a></h1>
+
+
+
+
+
+
+
+
+<h3>Навигация</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Документация классов</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Код модуля</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Быстрый поиск</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Biological Data Formats Team.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

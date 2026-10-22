@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html lang="ru" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Документация классов &#8212; документация Biological Data Formats 1.0.0</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=e35015f7"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=9bfe3ffa"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="prev" title="Biological Data Formats" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="id1">
+<h1>Документация классов<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<section id="module-base">
+<span id="id2"></span><h2>Базовые классы<a class="headerlink" href="#module-base" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="base.GenomicDataReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">base.</span></span><span class="sig-name descname"><span class="pre">GenomicDataReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/base.html#GenomicDataReader"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#base.GenomicDataReader" title="Link to this definition">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#base.Reader" title="base.Reader"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reader</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Абстрактный класс для геномных данных формата SAM и VCF.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="base.GenomicDataReader.get_chromosomes">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_chromosomes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/base.html#GenomicDataReader.get_chromosomes"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#base.GenomicDataReader.get_chromosomes" title="Link to this definition">¶</a></dt>
+<dd><p>Возвращает список хромосом.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="base.GenomicDataReader.get_refrence_genome">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_refrence_genome</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/base.html#GenomicDataReader.get_refrence_genome"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#base.GenomicDataReader.get_refrence_genome" title="Link to this definition">¶</a></dt>
+<dd><p>Возвращает имя референсного генома.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="base.GenomicDataReader.validate_coordinate">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">validate_coordinate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/base.html#GenomicDataReader.validate_coordinate"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#base.GenomicDataReader.validate_coordinate" title="Link to this definition">¶</a></dt>
+<dd><p>Проверяет корректность координаты</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="base.Reader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">base.</span></span><span class="sig-name descname"><span class="pre">Reader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/base.html#Reader"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#base.Reader" title="Link to this definition">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Абстрактный класс для чтения биологических файлов.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="base.Reader.analyze_line">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">analyze_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/base.html#Reader.analyze_line"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#base.Reader.analyze_line" title="Link to this definition">¶</a></dt>
+<dd><p>Метод для анализа и обработки отдельной строки файла.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="base.Reader.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/base.html#Reader.close"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#base.Reader.close" title="Link to this definition">¶</a></dt>
+<dd><p>Закрывает открытый файл.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="base.Reader.read">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/base.html#Reader.read"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#base.Reader.read" title="Link to this definition">¶</a></dt>
+<dd><p>Абстрактный метод генератор.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="base.SequenceReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">base.</span></span><span class="sig-name descname"><span class="pre">SequenceReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/base.html#SequenceReader"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#base.SequenceReader" title="Link to this definition">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#base.Reader" title="base.Reader"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reader</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Абстрактный класс для последовательностей FASTA и FASTQ.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="base.SequenceReader.get_sequence_ID">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_sequence_ID</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/base.html#SequenceReader.get_sequence_ID"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#base.SequenceReader.get_sequence_ID" title="Link to this definition">¶</a></dt>
+<dd><p>Возвращает список ID всех последовательностей.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="base.SequenceReader.validate_sequence">
+<span class="sig-name descname"><span class="pre">validate_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/base.html#SequenceReader.validate_sequence"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#base.SequenceReader.validate_sequence" title="Link to this definition">¶</a></dt>
+<dd><p>Проверка последовательности на корректность.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-readers.fasta">
+<span id="fasta"></span><h2>FASTA<a class="headerlink" href="#module-readers.fasta" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="readers.fasta.FastaReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">readers.fasta.</span></span><span class="sig-name descname"><span class="pre">FastaReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/fasta.html#FastaReader"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.fasta.FastaReader" title="Link to this definition">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#base.SequenceReader" title="base.SequenceReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">SequenceReader</span></code></a></p>
+<p>Класс для чтения и анализа файлов формата FASTA.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.fasta.FastaReader.analyze_line">
+<span class="sig-name descname"><span class="pre">analyze_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/fasta.html#FastaReader.analyze_line"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.fasta.FastaReader.analyze_line" title="Link to this definition">¶</a></dt>
+<dd><p>Реализация обязательного абстрактного метода</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.fasta.FastaReader.get_average_length">
+<span class="sig-name descname"><span class="pre">get_average_length</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/fasta.html#FastaReader.get_average_length"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.fasta.FastaReader.get_average_length" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.fasta.FastaReader.get_sequence_ID">
+<span class="sig-name descname"><span class="pre">get_sequence_ID</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/fasta.html#FastaReader.get_sequence_ID"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.fasta.FastaReader.get_sequence_ID" title="Link to this definition">¶</a></dt>
+<dd><p>Возвращает список ID всех последовательностей.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.fasta.FastaReader.get_sequence_count">
+<span class="sig-name descname"><span class="pre">get_sequence_count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/fasta.html#FastaReader.get_sequence_count"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.fasta.FastaReader.get_sequence_count" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.fasta.FastaReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/fasta.html#FastaReader.read"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.fasta.FastaReader.read" title="Link to this definition">¶</a></dt>
+<dd><p>Абстрактный метод генератор.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.fasta.FastaReader.validate_sequence">
+<span class="sig-name descname"><span class="pre">validate_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/fasta.html#FastaReader.validate_sequence"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.fasta.FastaReader.validate_sequence" title="Link to this definition">¶</a></dt>
+<dd><p>Проверка последовательности на корректность.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-readers.Fastq_project">
+<span id="fastq"></span><h2>FASTQ<a class="headerlink" href="#module-readers.Fastq_project" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="readers.Fastq_project.FastqReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">readers.Fastq_project.</span></span><span class="sig-name descname"><span class="pre">FastqReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/Fastq_project.html#FastqReader"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.Fastq_project.FastqReader" title="Link to this definition">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#base.SequenceReader" title="base.SequenceReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">SequenceReader</span></code></a></p>
+<p>Парсер и анализатор файлов формата FASTQ.
+Наследуется от SequenceReader.
+Использует генераторы для эффективного чтения больших файлов.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.Fastq_project.FastqReader.analyze_line">
+<span class="sig-name descname"><span class="pre">analyze_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/Fastq_project.html#FastqReader.analyze_line"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.Fastq_project.FastqReader.analyze_line" title="Link to this definition">¶</a></dt>
+<dd><p>Реализация абстрактного метода из базового класса.
+Так как мы читаем файл целиком через генератор read(),
+этот метод нам не нужен, но мы обязаны его создать.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.Fastq_project.FastqReader.count_sequences">
+<span class="sig-name descname"><span class="pre">count_sequences</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="_modules/readers/Fastq_project.html#FastqReader.count_sequences"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.Fastq_project.FastqReader.count_sequences" title="Link to this definition">¶</a></dt>
+<dd><p>Возвращает общее количество последовательностей в файле.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.Fastq_project.FastqReader.get_average_length">
+<span class="sig-name descname"><span class="pre">get_average_length</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/readers/Fastq_project.html#FastqReader.get_average_length"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.Fastq_project.FastqReader.get_average_length" title="Link to this definition">¶</a></dt>
+<dd><p>Вычисляет среднюю длину последовательностей.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.Fastq_project.FastqReader.get_sequence_ID">
+<span class="sig-name descname"><span class="pre">get_sequence_ID</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/readers/Fastq_project.html#FastqReader.get_sequence_ID"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.Fastq_project.FastqReader.get_sequence_ID" title="Link to this definition">¶</a></dt>
+<dd><p>Реализация абстрактного метода из базового класса.
+Возвращает список всех ID (заголовков) последовательностей.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.Fastq_project.FastqReader.plot_quality">
+<span class="sig-name descname"><span class="pre">plot_quality</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/Fastq_project.html#FastqReader.plot_quality"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.Fastq_project.FastqReader.plot_quality" title="Link to this definition">¶</a></dt>
+<dd><p>Строит графики качества (аналог FastQC).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>save_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Путь для сохранения картинки.
+Если None, график выводится на экран.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.Fastq_project.FastqReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/readers/Fastq_project.html#FastqReader.read"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.Fastq_project.FastqReader.read" title="Link to this definition">¶</a></dt>
+<dd><p>Генератор для построчного чтения FASTQ файла.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Yields<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>dict</em> – Словарь с ключами „header“, „sequence“ и „quality“.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.Fastq_project.FastqReader.validate_sequence">
+<span class="sig-name descname"><span class="pre">validate_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/readers/Fastq_project.html#FastqReader.validate_sequence"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.Fastq_project.FastqReader.validate_sequence" title="Link to this definition">¶</a></dt>
+<dd><p>Переопределяем метод из базового класса.
+Проверяет, что последовательность состоит только из символов A, T, G, C, N.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-readers.sam">
+<span id="sam"></span><h2>SAM<a class="headerlink" href="#module-readers.sam" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="readers.sam.SamReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">readers.sam.</span></span><span class="sig-name descname"><span class="pre">SamReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/sam.html#SamReader"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.sam.SamReader" title="Link to this definition">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#base.GenomicDataReader" title="base.GenomicDataReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenomicDataReader</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.sam.SamReader.analyze_line">
+<span class="sig-name descname"><span class="pre">analyze_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/sam.html#SamReader.analyze_line"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.sam.SamReader.analyze_line" title="Link to this definition">¶</a></dt>
+<dd><p>Разбирает одну строку SAM.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.sam.SamReader.get_chromosome_stats">
+<span class="sig-name descname"><span class="pre">get_chromosome_stats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/sam.html#SamReader.get_chromosome_stats"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.sam.SamReader.get_chromosome_stats" title="Link to this definition">¶</a></dt>
+<dd><p>Статистика: количество выравниваний на хромосому с помощью Pandas</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.sam.SamReader.get_chromosomes">
+<span class="sig-name descname"><span class="pre">get_chromosomes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/sam.html#SamReader.get_chromosomes"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.sam.SamReader.get_chromosomes" title="Link to this definition">¶</a></dt>
+<dd><p>Обязательный метод из GenomicDataReader</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.sam.SamReader.get_refrence_genome">
+<span class="sig-name descname"><span class="pre">get_refrence_genome</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/sam.html#SamReader.get_refrence_genome"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.sam.SamReader.get_refrence_genome" title="Link to this definition">¶</a></dt>
+<dd><p>Возвращает имя референсного генома.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.sam.SamReader.get_region_intersect">
+<span class="sig-name descname"><span class="pre">get_region_intersect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/sam.html#SamReader.get_region_intersect"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.sam.SamReader.get_region_intersect" title="Link to this definition">¶</a></dt>
+<dd><p>Поиск пересечений</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.sam.SamReader.parse_headers">
+<span class="sig-name descname"><span class="pre">parse_headers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/sam.html#SamReader.parse_headers"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.sam.SamReader.parse_headers" title="Link to this definition">¶</a></dt>
+<dd><p>Собирает информацию из строк, начинающихся с &#64;</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.sam.SamReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/sam.html#SamReader.read"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.sam.SamReader.read" title="Link to this definition">¶</a></dt>
+<dd><p>Абстрактный метод генератор.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.sam.SamReader.read_alignments">
+<span class="sig-name descname"><span class="pre">read_alignments</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/sam.html#SamReader.read_alignments"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.sam.SamReader.read_alignments" title="Link to this definition">¶</a></dt>
+<dd><p>Генератор, который выдает по одному выравниванию</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.sam.SamReader.validate_coordinate">
+<span class="sig-name descname"><span class="pre">validate_coordinate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/sam.html#SamReader.validate_coordinate"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.sam.SamReader.validate_coordinate" title="Link to this definition">¶</a></dt>
+<dd><p>Проверяет корректность.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-readers.vcf">
+<span id="vcf"></span><h2>VCF<a class="headerlink" href="#module-readers.vcf" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="readers.vcf.VcfReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">readers.vcf.</span></span><span class="sig-name descname"><span class="pre">VcfReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/vcf.html#VcfReader"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.vcf.VcfReader" title="Link to this definition">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#base.GenomicDataReader" title="base.GenomicDataReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">GenomicDataReader</span></code></a></p>
+<p>Класс для чтения и анализа VCF-файлов.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.vcf.VcfReader.analyze_line">
+<span class="sig-name descname"><span class="pre">analyze_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/vcf.html#VcfReader.analyze_line"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.vcf.VcfReader.analyze_line" title="Link to this definition">¶</a></dt>
+<dd><p>Превращает строку VCF в словарь.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.vcf.VcfReader.count_variants">
+<span class="sig-name descname"><span class="pre">count_variants</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/vcf.html#VcfReader.count_variants"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.vcf.VcfReader.count_variants" title="Link to this definition">¶</a></dt>
+<dd><p>Считает количество вариантов.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.vcf.VcfReader.get_chromosomes">
+<span class="sig-name descname"><span class="pre">get_chromosomes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/vcf.html#VcfReader.get_chromosomes"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.vcf.VcfReader.get_chromosomes" title="Link to this definition">¶</a></dt>
+<dd><p>Возвращает список хромосом с вариантами.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.vcf.VcfReader.get_header_group">
+<span class="sig-name descname"><span class="pre">get_header_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/vcf.html#VcfReader.get_header_group"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.vcf.VcfReader.get_header_group" title="Link to this definition">¶</a></dt>
+<dd><p>Возвращает указанную группу заголовков.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.vcf.VcfReader.get_headers">
+<span class="sig-name descname"><span class="pre">get_headers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/vcf.html#VcfReader.get_headers"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.vcf.VcfReader.get_headers" title="Link to this definition">¶</a></dt>
+<dd><p>Возвращает заголовки VCF.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.vcf.VcfReader.get_refrence_genome">
+<span class="sig-name descname"><span class="pre">get_refrence_genome</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/vcf.html#VcfReader.get_refrence_genome"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.vcf.VcfReader.get_refrence_genome" title="Link to this definition">¶</a></dt>
+<dd><p>Возвращает название референсного генома.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.vcf.VcfReader.get_region_intersect">
+<span class="sig-name descname"><span class="pre">get_region_intersect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/vcf.html#VcfReader.get_region_intersect"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.vcf.VcfReader.get_region_intersect" title="Link to this definition">¶</a></dt>
+<dd><p>Выдаёт варианты, пересекающие указанный интервал.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.vcf.VcfReader.get_statistics">
+<span class="sig-name descname"><span class="pre">get_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/vcf.html#VcfReader.get_statistics"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.vcf.VcfReader.get_statistics" title="Link to this definition">¶</a></dt>
+<dd><p>Считает варианты по регионам и возвращает таблицу pandas.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.vcf.VcfReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/vcf.html#VcfReader.read"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.vcf.VcfReader.read" title="Link to this definition">¶</a></dt>
+<dd><p>Читает варианты по одному с помощью генератора.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="readers.vcf.VcfReader.validate_coordinate">
+<span class="sig-name descname"><span class="pre">validate_coordinate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/readers/vcf.html#VcfReader.validate_coordinate"><span class="viewcode-link"><span class="pre">[исходный</span> <span class="pre">код]</span></span></a><a class="headerlink" href="#readers.vcf.VcfReader.validate_coordinate" title="Link to this definition">¶</a></dt>
+<dd><p>Проверяет хромосому и положительную позицию.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Biological Data Formats</a></h1>
+
+
+
+
+
+
+
+
+<h3>Навигация</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Документация классов</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-base">Базовые классы</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-readers.fasta">FASTA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-readers.Fastq_project">FASTQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-readers.sam">SAM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-readers.vcf">VCF</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="предыдущая глава">Biological Data Formats</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Быстрый поиск</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, Biological Data Formats Team.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/api.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
