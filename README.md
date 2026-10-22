@@ -180,29 +180,7 @@ MPLBACKEND=Agg python3 demo.py
 
 После запуска формируется изображение `fastq_report.png` с графиками FASTQ.
 
-## Пример использования VCF
 
-```python
-from readers.vcf import VcfReader
-
-reader = VcfReader("test_data/test.vcf")
-
-print("Количество вариантов:")
-print(reader.count_variants())
-
-print("Хромосомы:")
-print(reader.get_chromosomes())
-
-print("Референсный геном:")
-print(reader.get_refrence_genome())
-
-print("Статистика:")
-print(reader.get_statistics(region_size=1000000))
-
-print("Пересечения:")
-for variant in reader.get_region_intersect("chr1", 1000, 2000):
-    print(variant)
-```
 
 ## Тестовые данные и результаты
 
