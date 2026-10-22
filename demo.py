@@ -39,7 +39,7 @@ def run_fastq_demo():
     
 
 def run_sam_demo():
-    print("\n--- Тестирование SamReader ---")
+    print("Тестирование SamReader")
     sam_path = os.path.join("test_data", "test.sam")
 
     if not os.path.exists(sam_path):
