@@ -81,9 +81,13 @@ def run_vcf_demo():
     except (OSError, UnicodeError, ValueError) as error:
         print("Ошибка VCF:", error)
 
-
 if __name__ == "__main__":
-    run_fasta_demo()
-    run_fastq_demo()
-    run_sam_demo()
-    run_vcf_demo()
+    import sys
+    if "--gui" in sys.argv:
+        from fastqc_gui.app import launch_gui
+        launch_gui()
+    else:
+        run_fasta_demo()
+        run_fastq_demo()
+        run_sam_demo()
+        run_vcf_demo()
